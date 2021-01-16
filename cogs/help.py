@@ -1,5 +1,4 @@
 from typing import Optional
-from the_universe import syntax
 import discord
 import traceback
 import cogs._json
