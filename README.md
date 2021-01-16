@@ -25,7 +25,7 @@
 > ![help command](https://media.discordapp.net/attachments/769570575659171871/797688806585270292/unknown.png)
 
 ## 🤖Commands:
-<h4 id="🛡️ moderation-commands-">Moderation Commands:</h4>
+<h4 id="🛡️ moderation-commands-">🛡️ Moderation Commands:</h4>
 <blockquote>
 <table>
 <thead>
@@ -89,7 +89,7 @@
 </tbody>
 </table>
 </blockquote>
-<h4 id="✈️ aviation-commands-">Aviation Commands:</h4>
+<h4 id="✈️ aviation-commands-">✈️ Aviation Commands:</h4>
 <blockquote>
 <table>
 <thead>
@@ -118,7 +118,7 @@
 </tbody>
 </table>
 </blockquote>
-<h4 id="💸 fun-commands-">Fun Commands:</h4>
+<h4 id="fun-commands-">💸 Fun Commands:</h4>
 <blockquote>
 <table>
 <thead>
@@ -157,7 +157,7 @@
 </tbody>
 </table>
 </blockquote>
-<h4 id="🔨 utility-commands-">Utility Commands:</h4>
+<h4 id="utility-commands-">🔨 Utility Commands:</h4>
 <blockquote>
 <table>
 <thead>
