@@ -11,18 +11,11 @@
 [4]:  https://discord.gg/eJrTyEX
 
 
-#### Hey, AvMod is a growing multi-purpose bot, it was first built for aviation servers requiring an Aviation themed moderation bot. It does quite a few things. to list a few:
-
-- Moderation
-- Fun commands
-- Per-guild prefixes
-- New updates
-- Giveaway Commands
-
-### **Why this bot?**
-
-#### AvMod is being worked on everyday, which makes it get updates very quick, and this is not only a moderation bot but also a multi-purpose bot! It has its own speacial commands as well.
-
+## Modules:
+- [Moderation](https://github.com/dev-737/AvMod-V2/blob/master/cogs/commands.py)
+- [Fun commands](https://github.com/dev-737/AvMod-V2/blob/master/cogs/fun.py)
+- [Giveaway Commands](https://github.com/dev-737/AvMod-V2/blob/master/cogs/giveaway.py)
+- [Economy](https://github.com/dev-737/AvMod-V2/blob/master/cogs/_eco.py)
 ### How-To
 
 #### Use the help command to see all commands.
@@ -31,9 +24,7 @@
 #### Don't know how to use a command? Use `av!help <command_name>` to get the command syntax and uses.
 > ![help command](https://media.discordapp.net/attachments/769570575659171871/797688806585270292/unknown.png)
 
-
-### Lots of commands:
-
+### Commands:
 <h4 id="moderation-commands-">Moderation Commands:</h4>
 <blockquote>
 <table>
@@ -211,20 +202,10 @@
 </table>
 </blockquote>
 
-
 ##### And a lot more!
-
-### **24/7 Uptime**
-
-#### We keep AvMod alive and online as much as we can, so it stays up pretty much all day!
-
-So, what are you waiting for? Invite AvMod and join the other 100 servers using AvMod!
-
 For more information join the [support server](https://discord.gg/eJrTyEX), or use `av!help` to know more about AvMod's commands.
-
-
 ##
 # Go-to:
-#### [COGS](https://github.com/dev-737/AvMod-V2/tree/master/cogs)
-#### [BOT-CONFIG](https://github.com/dev-737/AvMod-V2/tree/master/bot_config)
-#### [Main.py](https://github.com/dev-737/AvMod-V2/blob/master/main.py)
+[COGS](https://github.com/dev-737/AvMod-V2/tree/master/cogs)
+[BOT-CONFIG](https://github.com/dev-737/AvMod-V2/tree/master/bot_config)
+[Main.py](https://github.com/dev-737/AvMod-V2/blob/master/main.py)
