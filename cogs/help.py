@@ -42,28 +42,12 @@ def convert(time):
     seconds = time
     return "%d:%d:%d:%d" % (day, hour, minutes, seconds)
 
-"""def gen_code():
-    chars = list(string.ascii_lowercase) + list(string.ascii_uppercase) + list(string.punctuation)
-    num = list(string.digits) + list(string.hexdigits) + list(string.octdigits)
-    former = []
-    for i in range(random.randint(10, 20)):
-        x = ('y', 'n')
-        if random.choice(x) == 'y':
-            if random.choice(x) == 'y':
-                former.append(random.choice(chars).lower())
-            else:
-                former.append(random.choice(chars).upper())
-        else:
-            former.append(random.choice(num))
-    return ''.join(map(str, former))"""
-
 
 class HELP(commands.Cog, name='<:info:769844372107427860> INFO'):
 
     def __init__(self, bot):
         self.bot = bot
-        self.dblpy = dbl.DBLClient(self.bot, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc2MTQxNDIzNDc2Nzg4NDMxOCIsImJvdCI6dHJ1ZSwiaWF0IjoxNjA2NDAxMzM5fQ.K6nFXKKJSMJ0WVORejXCfj93aMpnr6mt-MHnZ2oM1vs")
-
+        self.dblpy = dbl.DBLClient(self.bot, "DBL_Token Here"
         
 
 
@@ -153,87 +137,10 @@ class HELP(commands.Cog, name='<:info:769844372107427860> INFO'):
         await ctx.message.reply(embed=embed)
 
 
-
-    """async def cmd_help(self, ctx, command):
-      embed = discord.Embed(title=f"{str(command).upper()}",
-                            description=f"**USAGE:\n**`{ctx.prefix}{command.qualified_name} {command.signature}`",
-                            color=discord.Colour.dark_theme())
-      embed.add_field(name="Aliases", value=f"`{command.aliases}`", inline=False)
-      embed.add_field(name=f'Description:', value=f'{command.help}\n\n{command.usage}')
-      await ctx.message.reply(embed=embed)
-
-    @commands.command(name='help', description="Shows this message!", aliases=['commands', 'comms', 'command'])
-    async def help(self, ctx, *, command: Optional[str] = None):
-      
-        cogs=[c for c in self.bot.cogs.keys()]
-
-        SB_COGS = ['oldhelp']
-    
-        for hidden_cog in SB_COGS:
-          cogs.remove(hidden_cog)
-
-        if command == None:
-            HelpList = []
-
-            for rl_cog in cogs:
-                commandList = ""
-                for command in self.bot.get_cog(rl_cog).walk_commands():
-                    if command.hidden:
-                        continue
-
-                    elif command.parent != None:
-                        continue
-
-                    commandList += f"`{command.name}` ➣ {command.help}\n"
-
-                else:
-                    helpEmbed = discord.Embed(description="[Support](https://discord.gg/eJrTyEX)  •   [Vote](https://top.gg/bot/761414234767884318/vote)  •   [Invite](https://discord.com/api/oauth2/authorize?client_id=761414234767884318&permissions=8&scope=bot)", color=discord.Colour.dark_theme())
-                    helpEmbed.add_field(name=rl_cog, value=commandList, inline=True)
-                    helpEmbed.set_author(name=self.bot.user, icon_url=self.bot.user.avatar_url)
-                    HelpList.append(helpEmbed)
-            
-            else:
-              
-              menu = (PaginatedMenu(ctx))
-              menu.add_pages(HelpList)
-              menu.set_timeout(30)
-              menu.show_skip_buttons()
-              menu.show_page_numbers()
-              menu.allow_multisession()
-              menu.show_command_message() 
-              try: 
-                await menu.open()
-              except:
-                await ctx.send("**AN ERROR HAS OCCORED! PLEASE REPORT IT TO THE DEVS.")
-                return
-            
-
-            
-
-        else:
-            if (command := get(self.bot.commands, name=command)):
-                await self.cmd_help(ctx, command)
-                return
-
-            else:
-                await ctx.message.reply("Invalid Command!")
-                return"""
-
-    async def cmd_help(self, ctx, command):
+    async def help_for_Command(self, ctx, command):
       prefix = await self.bot.config.find(ctx.guild.id)
       prefix = prefix["Bot Prefix"] or "&"
       embed = discord.Embed(title=f"{str(command).upper()} Help!", description=f"`{prefix}` {syntax(command)}", color = discord.Colour.random())
-
-      '''
-      if command.parent in self.bot.get_command(command).walk_commands():
-        SCmd = ""
-        for subcommmand in command.parent:
-          SCmd += f"`{subcommmand}` - {subcommmand.description}\n"
-
-        embed.add_field(name='Subcommands:', value=SCmd)
-      '''
-
-
       embed.add_field(name=f'Command Description:', value=command.help or command.description)
 
       embed.set_footer(text=f'{ctx.prefix} - Server Prefix | <> - Required | [] - Optional')
@@ -242,12 +149,12 @@ class HELP(commands.Cog, name='<:info:769844372107427860> INFO'):
     @commands.command(name='help', description="Shows this message!",aliases=['commands', 'comms', 'command'])
     async def help(self, ctx, *, optional_command: Optional[str]=None):
 
-      cogs=[c for c in self.bot.cogs.keys()]
+      cogs=[command for command in self.bot.cogs.keys()]
 
       SB_COGS = ['🎁 GIVEAWAY', 'Jishaku', 'TopGG', 'tests']
       
-      for hidden_cog in SB_COGS:
-        cogs.remove(hidden_cog)
+      for hidden in cogs:
+        cogs.remove(hidden)
     
 
       if optional_command == None:
