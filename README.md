@@ -11,12 +11,12 @@
 [4]:  https://discord.gg/eJrTyEX
 
 
-## Modules:
+## ⚙️Modules:
 - [Moderation](https://github.com/dev-737/AvMod-V2/blob/master/cogs/commands.py)
 - [Fun commands](https://github.com/dev-737/AvMod-V2/blob/master/cogs/fun.py)
 - [Giveaway Commands](https://github.com/dev-737/AvMod-V2/blob/master/cogs/giveaway.py)
 - [Economy](https://github.com/dev-737/AvMod-V2/blob/master/cogs/_eco.py)
-## How-To
+## ❓ How-To
 
 #### Use the help command to see all commands.
 > ![Help](https://media.discordapp.net/attachments/764862897830363146/797688566594666586/unknown.png) 
@@ -24,7 +24,7 @@
 #### Don't know how to use a command? Use `av!help <command_name>` to get the command syntax and uses.
 > ![help command](https://media.discordapp.net/attachments/769570575659171871/797688806585270292/unknown.png)
 
-## Commands:
+## 🤖Commands:
 <h4 id="moderation-commands-">Moderation Commands:</h4>
 <blockquote>
 <table>
@@ -204,8 +204,8 @@
 
 ##### And a lot more!
 For more information join the [support server](https://discord.gg/eJrTyEX), or use `av!help` to know more about AvMod's commands.
-##
-# Go-to:
+
+## ✈️Go-to:
 ##### [COGS](https://github.com/dev-737/AvMod-V2/tree/master/cogs)
 ##### [BOT-CONFIG](https://github.com/dev-737/AvMod-V2/tree/master/bot_config)
 ##### [MAIN.PY](https://github.com/dev-737/AvMod-V2/blob/master/main.py)
