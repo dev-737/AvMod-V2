@@ -578,36 +578,5 @@ class moderation(commands.Cog): #, name="<a:discordstaff_shine:76944552923837237
       await member.remove_roles(role)
       await ctx.reply("Role Removed!")
 
-
-
-
-"""  @commands.command()
-  async def create_invite(self, ctx):
-      Create instant invite
-      link = await ctx.channel.create_invite(max_age = 300)
-      await ctx.send(f"Here is an instant invite to your server: {link}")"""
-
-"""  @commands.command()
-  @commands.has_permissions(manage_channels=True)
-  async def clone(self, ctx, channel):
-    if channel==None:
-      channel=ctx.Channel
-    name=ctx.channel_name
-
-    await channel.clone(name=name)
-    await ctx.send('Cloned channel!')"""
-
-"""  @commands.command()
-  async def avtest(self, ctx, user_id: int):
-    voted= await self.get_user_vote(self.bot_id, user_id)
-    if voted == True:
-      await ctx.send("TEST SUCCESSFUL!")
-    else:
-      await ctx.send("In order for you to use this command, pls vote in https://top.gg/bot/763626077292724264")"""
-
-
-
-
-
 def setup(bot):
     bot.add_cog(moderation(bot))
