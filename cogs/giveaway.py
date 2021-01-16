@@ -21,7 +21,7 @@ def convert(time):
 
     return val * time_dict[unit]
 
-class Giveaway(commands.Cog, name="🎁 GIVEAWAY"):
+class Giveaway(commands.Cog, name="GIVEAWAY"):
 
 
   def __init__(self, bot):
