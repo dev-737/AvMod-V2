@@ -16,7 +16,7 @@
 - [Fun commands](https://github.com/dev-737/AvMod-V2/blob/master/cogs/fun.py)
 - [Giveaway Commands](https://github.com/dev-737/AvMod-V2/blob/master/cogs/giveaway.py)
 - [Economy](https://github.com/dev-737/AvMod-V2/blob/master/cogs/_eco.py)
-### How-To
+## How-To
 
 #### Use the help command to see all commands.
 > ![Help](https://media.discordapp.net/attachments/764862897830363146/797688566594666586/unknown.png) 
@@ -24,7 +24,7 @@
 #### Don't know how to use a command? Use `av!help <command_name>` to get the command syntax and uses.
 > ![help command](https://media.discordapp.net/attachments/769570575659171871/797688806585270292/unknown.png)
 
-### Commands:
+## Commands:
 <h4 id="moderation-commands-">Moderation Commands:</h4>
 <blockquote>
 <table>
