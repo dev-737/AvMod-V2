@@ -223,3 +223,8 @@ So, what are you waiting for? Invite AvMod and join the other 100 servers using 
 For more information join the [support server](https://discord.gg/eJrTyEX), or use `av!help` to know more about AvMod's commands.
 
 
+##
+# Go-to:
+#### [COGS](https://github.com/dev-737/AvMod-V2/tree/master/cogs)
+#### [BOT-CONFIG](https://github.com/dev-737/AvMod-V2/tree/master/bot_config)
+#### [Main.py](https://github.com/dev-737/AvMod-V2/blob/master/main.py)
