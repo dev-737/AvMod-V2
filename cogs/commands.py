@@ -1,6 +1,5 @@
 import discord
 import asyncio
-import dbl
 from discord.ext import commands
 import cogs._json
 
@@ -30,8 +29,6 @@ class moderation(commands.Cog): #, name="<a:discordstaff_shine:76944552923837237
 
   def __init__(self, bot):
     self.bot = bot
-    self.dblpy = dbl.DBLClient(self.bot, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc2MTQxNDIzNDc2Nzg4NDMxOCIsImJvdCI6dHJ1ZSwiaWF0IjoxNjA2NDAxMzM5fQ.K6nFXKKJSMJ0WVORejXCfj93aMpnr6mt-MHnZ2oM1vs")
-
 
   @commands.command(aliases=['disconnect', 'close', 'stopbot'], hidden=True)
   @commands.is_owner()
