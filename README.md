@@ -208,4 +208,4 @@ For more information join the [support server](https://discord.gg/eJrTyEX), or u
 # Go-to:
 ##### [COGS](https://github.com/dev-737/AvMod-V2/tree/master/cogs)
 ##### [BOT-CONFIG](https://github.com/dev-737/AvMod-V2/tree/master/bot_config)
-##### [Main.py](https://github.com/dev-737/AvMod-V2/blob/master/main.py)
+##### [MAIN.PY](https://github.com/dev-737/AvMod-V2/blob/master/main.py)
