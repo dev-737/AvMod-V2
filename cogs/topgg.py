@@ -1,5 +1,5 @@
 from discord.ext import commands
-
+import os
 import dbl
 
 
@@ -10,7 +10,8 @@ class TopGG(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
-        self.token = 'dbl_token here'  # set this to your DBL token
+        token = os.environ.get("dbltoken")
+        self.token = token  # set this to your DBL token
         self.dblpy = dbl.DBLClient(self.bot, self.token, autopost=True)  # Autopost will post your guild count every 30 minutes
 
     @commands.Cog.listener()
