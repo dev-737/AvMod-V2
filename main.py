@@ -29,9 +29,6 @@ from discord.ext import commands
 
 import cogs._json
 
-# cwd = Path(__file__).parents[0]
-# wd = str(cwd)
-# print(f"{cwd}\n-----")
 
 class MyContext(commands.Context):
     async def tick(self, value):
@@ -71,31 +68,19 @@ def get_prefix(bot, message):
         return commands.when_mentioned_or('av!')(bot, message)
     return commands.when_mentioned_or(data[str(message.guild.id)])(bot, message)
 
-"""async def get_prefix(bot, message):
-  if message.author.id == 701727675311587358:
-      prefixes = ["a ", "a! ", "A! ", ""]
-  data = cogs._json.read_json('prefixes')
-  if not str(message.guild.id) in data:
-        return commands.when_mentioned_or('av!')(bot, message)
-  return commands.when_mentioned_or(*prefixes)(bot, message)"""
 
     
 
-# Defining a few things
-# secret_file = json.load(open(cwd+'/bot_config/.env'))
+
 intents = discord.Intents.all()
 bot = MyBot(command_prefix=get_prefix, case_insensitive=True, owner_id=701727675311587358)
 slash = SlashCommand(bot, auto_register=True)
-  # before messages=True, guilds=True, members=True
+
 bot.remove_command('help')
-# bot.config_token = secret_file['token']
+
 logging.basicConfig(level=logging.INFO)
-
 bot.blacklisted_users = []
-# bot.cwd = cwd
-
 bot.version = '2.1.0'
-
 @slash.slash(name="echo", options=[manage_commands.create_option("string", "A random string.", SlashCommandOptionType.STRING, True)])
 async def _echo(ctx, string):
     embed=discord.Embed(description=string, color=discord.Colour.random())
@@ -146,18 +131,12 @@ async def guess(ctx, number: int):
     # green check mark if the guess was correct,
     # or a red cross mark if it wasnt
     await ctx.tick(number == value)
-    #await ctx.embed()
 
 @bot.event
 async def on_ready():
     print(f"READY!!!!!\n\n~~Logged in As {bot.user}~~")
     await bot.change_presence(status=discord.Status.dnd,
                               activity=discord.Activity(type=discord.ActivityType.listening, name=f"av!help"))
-
-
-"""@bot.event
-async def on_ready():
-    print(f"-----\nLogged in as: {bot.user.name} : {bot.user.id}\n-----\nMy current prefix is: -\n-----")"""
 
 
 @bot.event
@@ -224,10 +203,6 @@ async def load(ctx, cog):
     print(
         f"{ctx.author.id} attempted to load an extension named {cog}.\n----------------------------------")
 
-
-"""for filename in os.listdir('./cogs/'):
-  if filename.endswith('.py') and not filename.startswith("_"):
-    bot.load_extension(f'cogs.{filename[:-3]}')"""
 
 
 @bot.command(aliases=['rl'])
