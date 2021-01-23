@@ -1,10 +1,6 @@
 # ~~**AvMod**~~
 
 
-# **PRIVATE BOT NOW!**
-
-
-
 [![img][1]][2]
 
 [1]:  https://botlist.space/bot/761414234767884318/badge?property=tag
