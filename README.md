@@ -1,4 +1,9 @@
-# **AvMod**
+# ~~**AvMod**~~
+
+
+# **PRIVATE BOT NOW!**
+
+
 
 [![img][1]][2]
 
