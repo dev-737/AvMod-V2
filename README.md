@@ -1,7 +1,7 @@
 # Suggest Your names pls.
 
 
-[![img][1]][2]
+<!-- [![img][1]][2]
 
 [1]:  https://botlist.space/bot/761414234767884318/badge?property=tag
 [2]:  https://top.gg/bot/761414234767884318
@@ -9,7 +9,7 @@
 [![img][3]][4]
 
 [3]:  https://botlist.space/bot/761414234767884318/badge?property=support
-[4]:  https://discord.gg/eJrTyEX
+[4]:  https://discord.gg/eJrTyEX -->
 
 
 ## ⚙️Cogs:
