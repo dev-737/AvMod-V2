@@ -2,15 +2,18 @@ import discord
 import platform
 import re
 import os
+import urllib.request as request
 import asyncio
+import json
 from discord import Spotify
 from discord import CustomActivity
 import random
 import urllib.parse
-import aiohttp
-from PIL import Image, ImageFont,ImageDraw
-import datetime
 from discord.ext import commands
+
+from imports import animatedEmojis
+
+tada = animatedEmojis.tada
 
 def convert(time):
     pos = ["s","m","h","d","w"]
@@ -55,7 +58,7 @@ class utility(commands.Cog): #, name="🛠️ UTILITY"
         """
         message = message or "Please provide the message to be repeated."
         await ctx.message.delete()
-        await ctx.send(message)
+        await ctx.send(content=message, allowed_mentions = discord.AllowedMentions(everyone = False, roles=False))
 
   @commands.command(aliases=["av", "pfp"])
   async def avatar(self, ctx,*, member: discord.Member=None):
@@ -176,9 +179,7 @@ class utility(commands.Cog): #, name="🛠️ UTILITY"
   @commands.command()
   @commands.guild_only()
   async def poll(self, ctx, *, question):
-      """Interactively creates a poll with the following question.
-      To vote, use reactions!
-      """
+      """Interactively creates a poll with upto 20 questions."""
 
       # a list of messages to delete when we're all done
       messages = [ctx.message]
@@ -208,7 +209,9 @@ class utility(commands.Cog): #, name="🛠️ UTILITY"
           pass # oh well
 
       answer = '\n'.join(f'{keycap}: {content}' for keycap, content in answers)
-      actual_poll = await ctx.send(f'{ctx.author} asks: {question}\n\n{answer}')
+      embed=discord.Embed(title="Poll:", color=discord.Colour.random())
+      embed.add_field(name=question, value=answer)
+      actual_poll = await ctx.send(embed=embed)
       for emoji, _ in answers:
           await actual_poll.add_reaction(emoji)
 
@@ -220,9 +223,7 @@ class utility(commands.Cog): #, name="🛠️ UTILITY"
   @commands.command()
   @commands.guild_only()
   async def quickpoll(self, ctx, *questions_and_choices: str):
-      """Makes a poll quickly.
-      The first argument is the question and the rest are the choices.
-      """
+      """Makes a poll quickly."""
 
       if len(questions_and_choices) < 3:
           return await ctx.send('Need at least 1 question with 2 choices.')
@@ -242,115 +243,55 @@ class utility(commands.Cog): #, name="🛠️ UTILITY"
           pass
 
       body = "\n".join(f"{key}: {c}" for key, c in choices)
-      poll = await ctx.send(f'{ctx.author} asks: {question}\n\n{body}')
+      embed=discord.Embed(title="Poll:", color=discord.Colour.random())
+      embed.add_field(name=question, value=body)
+      poll = await ctx.send(embed=embed)
       for emoji, _ in choices:
           await poll.add_reaction(emoji)
 
-
-  @commands.command(description=f'Start a giveaway!', aliases=['gcreate', 'giveawaycreate'])
-  @commands.guild_only()
-  @commands.check_any(commands.is_owner(), commands.has_permissions(manage_guild=True))
-  async def giveaway_create(self, ctx):
-
-    """Start a giveaway!"""
-
-    await ctx.send("**Let's start with this giveaway!** Answer these questions within 30 seconds!")
-
-    questions = ["1. **Which channel should this giveaway be hosted in?**", 
-                "2. What should be the duration of the giveaway? (s|m|h|d|w) \nexample: `5d`",
-                "3. What is the prize when someone wins the giveaway?"]
-
-    answers = []
-
-    def check(m):
-        return m.author == ctx.author and m.channel == ctx.channel 
-
-    for i in questions:
-        await ctx.send(i)
-
-        try:
-            msg = await self.bot.wait_for('message', timeout=30.0, check=check)
-        except asyncio.TimeoutError:
-            await ctx.send('You didn\'t answer in time, please be quicker next time!')
-            return
-        else:
-            answers.append(msg.content)
-    try:
-        c_id = int(answers[0][2:-1])
-    except:
-        await ctx.send(f"You didn't mention a channel properly. Do it like this {ctx.channel.mention} next time.")
-        return
-
-    channel = self.bot.get_channel(c_id)
-
-    time = convert(answers[1])
-
-    if time == -1:
-        await ctx.send(f"You didn't answer the time with a proper unit. Use (s|m|h|d|w) next time!")
-        return
-    elif time == -2:
-        await ctx.send(f"The time must be an integer. Please enter an integer next time")
-        return            
-
-    prize = answers[2]
-    await ctx.send(f"The __Giveaway will be in {channel.mention}__ and will last **{answers[1]}!** \n\nprize: **{prize}!**")
-
-
-    embed = discord.Embed(title = "Giveaway!", description = f"{prize}", color = 0xB19CD9)
-
-    embed.set_author(name = f"Giveaway Created by {ctx.author}!", icon_url=ctx.author.avatar_url)
-
-    embed.set_footer(text = f"React with 🎉 to enter! | Ends {answers[1]} from now!")
-
-    my_msg = await channel.send(embed = embed)
-
-
-    await my_msg.add_reaction("🎉")
-
-
-    await asyncio.sleep(time)
-
-
-    new_msg = await channel.fetch_message(my_msg.id)
-
-
-    users = await new_msg.reactions[0].users().flatten()
-    users.pop(users.index(self.bot.user))
-
-    try:
-      winner = random.choice(users)
-    except IndexError:
-      await ctx.send("Oh well... No one even entered. 😦")
-
-    await ctx.author.send(f"The giveaway that you started {answers[1]} ago from {ctx.guild.name} has ended.\n\nWinner: {winner} | ID: `{winner.id}` ")
-    await channel.send(f"Congratulations! {winner.mention} has won **{prize}**!")
-
   @commands.command()
-  @commands.guild_only()
-  @commands.check_any(commands.is_owner(), commands.has_permissions(manage_guild=True))
-  async def reroll(self, ctx,  id_of_giveaway : int):
+  async def pypi(self, ctx, lib: str):
 
-    """Reroll A Giveaway!"""
+      """Search for a library/module on pypi.org."""
+      with request.urlopen(f'https://pypi.org/pypi/{lib}/json') as response:
+        
+        source = response.read()
+        data = json.loads(source)
+        email=data['info']['author_email']
+        if email == None:
+          email = "None Provided."
+        docs=data['info']['docs_url']
+        summary=data['info']['summary']
+        author=data['info']['author']
+        package_url=data['info']['package_url']
+        licence=data['info']['license']
+        home_page=data['info']['project_urls']['Homepage']
+        project_url=data['info']['project_url']
+        keywords = data['info']['keywords']
+        download_url = data['info']['download_url']
+        if download_url == "": download_url = "None Provided."
+        if keywords == "": keywords = "None Provided."
+        if project_url == None: project_url = "None Provided."
+        version=data['info']['version']
+        if email =="": email="None Provided."
+        if docs ==None: docs="None Provided."
 
-    await ctx.message.delete()
-
-    try:
-      new_msg = await ctx.channel.fetch_message(id_of_giveaway)
-    except:
-      await ctx.send("**ERROR!**\nInvalid message id")
-      return
       
-    users = await new_msg.reactions[0].users().flatten()
-    users.pop(users.index(self.bot.user))
+        embed=discord.Embed(title=f'{lib} {version}', url=project_url, description=f"{summary}", color=discord.Colour.random())
+        #embed.add_field(name="Description:", value=data['info']['description'])
+        embed.add_field(name="◽ Author Details:", value=f"**▫️ Name:** {author}\n**▫️ Email:** {email}\n")
+        embed.add_field(name="◽ Project Details:", value=f'**▫️ Version:** {version}\n**▫️ Licence:** {licence}\n**▫️ Homepage:** {home_page}\n**▫️ Documentation URL:** {docs}\n**▫️ Download URL:** {download_url}\n**▫️ Keywords:** {keywords}\n', inline=False)
+        embed.set_thumbnail(url='https://miro.medium.com/max/660/1*2FrV8q6rPdz6w2ShV6y7bw.png')
 
-    winner = random.choice(users)
-
-    await ctx.channel.send(f"The new winner is {winner.mention}!")
+  
+      
+      await ctx.send(embed=embed)
 
 
 
   @commands.command()
   async def spotify(self, ctx, user: discord.Member=None):
+      """Shows you what your listening to, in a nice embed."""
       user = user or ctx.author
       for activity in user.activities:
           if isinstance(activity, Spotify):
@@ -363,22 +304,10 @@ class utility(commands.Cog): #, name="🛠️ UTILITY"
       else:
         await ctx.send(":x: Not Listening to Spotify!")
 
-  @commands.command(hidden=True)
-  @commands.is_owner()
-  async def whatdoing(self, ctx, user: discord.Member=None):
-    user = user or ctx.author
-    for activity in user.activities:
-      if isinstance(activity, CustomActivity) and isinstance(activity, Spotify):
-            embed=discord.Embed(color=discord.Colour.dark_theme())
-            embed.add_field(name="CustomActivity", value=f"Name: {activity.name}\nEmoji: {activity.emoji}")
-            embed.set_author(name=user.name, icon_url=user.avatar_url)
-            embed.add_field(name=activity.name, value=f"Listening to **{activity.title}** by **{activity.artist}**.", inline=False)
-            embed.set_image(url=activity.album_cover_url)
-            await ctx.send(embed=embed)    
-
   @commands.command(name="change-log", aliases=["changelog", "cl"])
   async def changel(self, ctx):
-    embed=discord.Embed(title="<a:tada:769463305424338944>V2.1.0<a:tada:769463305424338944>", color=0x2F3136, description="""
+    """List Of bot updates."""
+    embed=discord.Embed(title=f"{tada}V2.1.0{tada}", color=0x2F3136, description="""
 
 <:wait:790914749785309204> **CHANGE-LOG:**
 **```diff
