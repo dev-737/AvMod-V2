@@ -58,7 +58,7 @@ class utility(commands.Cog): #, name="🛠️ UTILITY"
         """
         message = message or "Please provide the message to be repeated."
         await ctx.message.delete()
-        await ctx.send(content=message, allowed_mentions = discord.AllowedMentions(everyone = False, roles=False))
+        await ctx.send(content=message, allowed_mentions = discord.AllowedMentions(everyone=False, roles=False))
 
   @commands.command(aliases=["av", "pfp"])
   async def avatar(self, ctx,*, member: discord.Member=None):
@@ -293,10 +293,12 @@ class utility(commands.Cog): #, name="🛠️ UTILITY"
   async def spotify(self, ctx, user: discord.Member=None):
       """Shows you what your listening to, in a nice embed."""
       user = user or ctx.author
+
       for activity in user.activities:
           if isinstance(activity, Spotify):
             embed=discord.Embed(color=discord.Colour.green())
             embed.add_field(name=activity.title, value=f"Listening to **{activity.title}** by **{activity.artist}**.")
+            embed.add_field(name="Listen to Track", value=f'https://open.spotify.com/track/{activity.track_id}>', inline=False)
             embed.set_image(url=activity.album_cover_url)
             embed.set_author(name=user.name, icon_url=user.avatar_url)
             await ctx.send(embed=embed)
