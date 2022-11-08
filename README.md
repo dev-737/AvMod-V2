@@ -1,5 +1,5 @@
-# Suggest Your names pls.
-
+# AvMod - A Multi-Purpose Aviation themed discord bot. 
+AvMod uses an older version of discord.py. Contributions to help migrate to the latest version is appreciated!
 
 <!-- [![img][1]][2]
 
