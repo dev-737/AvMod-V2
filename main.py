@@ -197,4 +197,4 @@ if __name__ == '__main__':
         if filename.endswith(".py") and not filename.startswith("_"):
             bot.load_extension(f"cogs.{filename[:-3]}")
     token = os.environ.get("token")
-    bot.run("NzY1OTA1MDI2NDU0Mzg4NzM3.X4bmpA.Ntx39gAAQlOhXv1Rk-godEqCXog")
+    bot.run("Token Here")
