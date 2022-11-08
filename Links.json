@@ -8,7 +8,7 @@
   "triggered" : "https://some-random-api.ml/canvas/triggered/?avatar=",
   "chatbot" : "https://some-random-api.ml/chatbot/?message=", 
   "glass": "https://some-random-api.ml/canvas/glass/?avatar=", 
-  "greyscale": "https://some-random-api.ml/canvas/greyscale/?avatar=&key=dVYrXeXFuXwdkREnT9zB7efDV"
+  "greyscale": "https://some-random-api.ml/canvas/greyscale/?avatar=&key={sra-key-here}"
 }
 
 
